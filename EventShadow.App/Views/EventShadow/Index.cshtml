@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section head
+    {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+
+@model DeviceViewModel
+
+@{
+    if (Model.devicesFound.Count > 0)
+    {
+        <div id="headline-container">
+            @{
+                if (Model.devicesFound.Count() > 1)
+                {
+                    <h3> Bluetooth Antenna Traffic from @Model.eventInfo.startDate.ToString("MM/dd/yy") to @Model.eventInfo.endDate.ToString("MM/dd/yyyy") for @Model.eventInfo.eventName Event</h3>
+                    <br />
+                }
+                else
+                {
+                    var test = Model.devicesFound.FirstOrDefault();
+                    <h3> Bluetooth Antenna Traffic for @Model.eventInfo.startDate.ToString("MM/dd/yyyy") for @Model.eventInfo.eventName</h3>
+                }
+            }
+        </div>
+
+        <div class="box-body">
+            <div class="chart-container">
+                <canvas id="chart" style="width:100%; height:500px"></canvas>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="panel-danger" id="noModels">
+            <h3 class="alert alert-danger">There are no Bluetooth Antenna Advertisements for the event selected. Please try again.</h3>
+        </div>
+    }
+}
+
+
+<div id="selector-container" style="margin-top: 30px;text-align:center;">
+
+    <select name="deviceId" id="devices" style="display: inline-block;">
+        <option value="1">Circle K Speed Street</option>
+        <option value="2">Wells Street Art Festival</option>
+        <option value="3">Taste of Reston</option>
+        <option value="4">27th Annual Giant BBQ Battle</option>
+        <option value="5">Live at Lunch</option>
+        <option value="6">Artscape</option>
+        <option value="7">NJ Balloon Festival</option>
+        <option value="8">Musikfest Weekend</option>
+        <option value="9">Charlotte Pride</option>
+        <option value="10">17th Street Festival</option>
+        <option value="11">African Festival of the Arts</option>
+        <option value="12">Bourbon & BBQ</option>
+        <option value="13">The Shops at Liberty Place</option>
+        <option value="14">Midtown Village Fall Festival</option>
+        <option value="15">Atlanta Pride</option>
+
+    </select>
+    <button class="btn btn-primary" type="submit" id="updateScreen" style="margin-left: 10px;">Get BLE Traffic</button>
+</div>
+
+@section scripts
+    {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+
+            $(function () {
+                var chartName = "chart";
+                var ctx = document.getElementById(chartName).getContext('2d');
+                var data = {
+                    labels: ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'],
+                    datasets: [
+                        @{
+                            foreach (var item in Model.devicesFound)
+                            {
+                                @: {
+                                @: label: ['5/23/2019'],
+                                @: backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                @: borderColor: 'rgb(255, 99, 132)',
+                                @: borderWidth: 1,
+                                @: data: [ 10,25,62,11,58,21,47,84,66,44,15,14,87,67,85,41,21,74,26,41,32,22,78,54],
+                                @: fill: false,
+                                @: pointStyle: 'rect',
+                                @: pointRadius: 6,
+                                @: lineTension: .3,
+                                @: spanGaps: true
+                                @: },
+                            }
+                        }
+                    ]};
+
+                var options = {
+
+
+                };
+
+           var myChart = new  Chart(ctx, {
+                options: options,
+                data: data,
+               type: 'line'
+                });
+            });
+
+            $('#updateScreen').on({
+                click: function () {
+                    var deviceId = $('#devices').val();
+                    alert(deviceId);
+                    var url = '/api/EventShadow/GetDevicesByEvent/' + deviceId;
+                    window.location = 'https://' + window.location.host + url;
+
+                    
+                }
+            });
+
+            $.date = function (dateObject) {
+                var d = new Date(dateObject);
+                var day = d.getDate();
+                var month = d.getMonth() + 1;
+                var year = d.getFullYear();
+                if (day < 10) {
+                    day = "0" + day;
+                }
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                var date = month + "-" + day + "-" + year;
+                return date;
+            };
+
+    </script>
+}

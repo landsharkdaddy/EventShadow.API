@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventShadow.API", "EventShadow.API\EventShadow.API.csproj", "{49A5465B-F264-4ABC-B343-C30DCF82A9E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventShadow.App", "EventShadow.App\EventShadow.App.csproj", "{5FF758C3-316F-4023-8B8F-1FAA553B4B05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49A5465B-F264-4ABC-B343-C30DCF82A9E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A5465B-F264-4ABC-B343-C30DCF82A9E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A5465B-F264-4ABC-B343-C30DCF82A9E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A5465B-F264-4ABC-B343-C30DCF82A9E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FF758C3-316F-4023-8B8F-1FAA553B4B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF758C3-316F-4023-8B8F-1FAA553B4B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF758C3-316F-4023-8B8F-1FAA553B4B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF758C3-316F-4023-8B8F-1FAA553B4B05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66CB89FF-7595-45BC-974C-56FF54000E4F}
+	EndGlobalSection
+EndGlobal
