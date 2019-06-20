@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.AspNetCore.Hosting.Internal;
 using System.Net.Http.Headers;
+using System.Net.Http;
 
 namespace EventShadow.API.Controllers
 {
@@ -34,6 +35,13 @@ namespace EventShadow.API.Controllers
         public IActionResult GetEventShadowEvents( int eventId )
         {
             return new ObjectResult( _context.Events.Where( e => e.Id == eventId ).OrderBy( e => e.StartDate ).AsNoTracking() );
+        }
+
+
+        [Route("GetAllEventShadowEvents")]
+        public IActionResult GetAllEventShadowEvents()
+        {
+            return new ObjectResult(_context.Events.AsNoTracking());
         }
 
         [Route( "GetDevicesByEventShadowDeviceID/{eventshadowdeviceid}" )]
@@ -78,7 +86,6 @@ namespace EventShadow.API.Controllers
                     }
                 }
                 return Ok();
-                //return Ok( new { dbPath } );
             }
             catch ( Exception ex )
             {

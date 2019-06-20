@@ -11,7 +11,7 @@ namespace EventShadow.API.Models
             EventDevices = new HashSet<EventDevices>();
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string DeviceName { get; set; }
 
         public ICollection<Devices> Devices { get; set; }

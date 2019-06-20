@@ -40,6 +40,7 @@ namespace EventShadow.API
                   = ReferenceLoopHandling.Ignore;
             });
             services.AddDbContext<EventShadowContext>(options => options.UseSqlServer(connection));
+            services.AddCors();
 
             services.Configure<FormOptions>( x =>
             {
@@ -61,7 +62,7 @@ namespace EventShadow.API
             }
             else
             {
-                app.UseHsts();
+                //app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -71,9 +72,6 @@ namespace EventShadow.API
                 FileProvider = new PhysicalFileProvider(Path.Combine( Directory.GetCurrentDirectory() , "Resources" )),
                 RequestPath = new PathString("/Resources")
             } );
-
-            
-
             app.UseMvc();
         }
     }

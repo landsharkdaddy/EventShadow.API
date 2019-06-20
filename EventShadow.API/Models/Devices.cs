@@ -12,8 +12,8 @@ namespace EventShadow.API.Models
         public string Rssi { get; set; }
         public string LocalName { get; set; }
         public string ManufacturerDataString { get; set; }
-        public int SonarDeviceId { get; set; }
-        public int EventId { get; set; }
+        public long SonarDeviceId { get; set; }
+        public long EventId { get; set; }
 
         public EventShadowDevices SonarDevice { get; set; }
     }
