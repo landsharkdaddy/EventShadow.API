@@ -9,7 +9,7 @@ namespace EventShadow.API.Models
         public long EventId { get; set; }
         public long EventShadowId { get; set; }
 
-        public Events Event { get; set; }
-        public EventShadowDevices EventShadow { get; set; }
+        public virtual Events Event { get; set; }
+        public virtual EventShadowDevices EventShadow { get; set; }
     }
 }

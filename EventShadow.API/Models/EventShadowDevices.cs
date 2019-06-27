@@ -14,7 +14,7 @@ namespace EventShadow.API.Models
         public long Id { get; set; }
         public string DeviceName { get; set; }
 
-        public ICollection<Devices> Devices { get; set; }
-        public ICollection<EventDevices> EventDevices { get; set; }
+        public virtual ICollection<Devices> Devices { get; set; }
+        public virtual ICollection<EventDevices> EventDevices { get; set; }
     }
 }

@@ -7,6 +7,7 @@ namespace EventShadow.API.Models
     {
         public Events()
         {
+            Devices = new HashSet<Devices>();
             EventDevices = new HashSet<EventDevices>();
         }
 
@@ -21,6 +22,7 @@ namespace EventShadow.API.Models
         public string State { get; set; }
         public string Zip { get; set; }
 
-        public ICollection<EventDevices> EventDevices { get; set; }
+        public virtual ICollection<Devices> Devices { get; set; }
+        public virtual ICollection<EventDevices> EventDevices { get; set; }
     }
 }
